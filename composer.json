@@ -1,0 +1,18 @@
+{
+    "name": "tomwright/db-query-builder",
+    "description": "A package to make building database queries easy.",
+    "authors": [
+        {
+            "name": "Tom Wright",
+            "email": "contact@tomwright.me"
+        }
+    ],
+    "require": {
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "TomWright\\Database\\QueryBuilder\\": "src/"
+        }
+    }
+}
