@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tom
- * Date: 03/11/17
- * Time: 14:51
- */
 
-namespace TomWright\Database\QueryBuilder\Tests;
+namespace TomWright\Database\QueryBuilder\Tests\SqlQuery;
 
 
 use PHPUnit\Framework\TestCase;

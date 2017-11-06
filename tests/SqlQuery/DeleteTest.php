@@ -1,6 +1,6 @@
 <?php
 
-namespace TomWright\Database\QueryBuilder\Tests;
+namespace TomWright\Database\QueryBuilder\Tests\SqlQuery;
 
 
 use PHPUnit\Framework\TestCase;
