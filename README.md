@@ -1,4 +1,4 @@
-# Extended PDO
+# Query Builder PHP
 
 [![Build Status](https://travis-ci.org/TomWright/QueryBuilderPHP.svg?branch=master)](https://travis-ci.org/TomWright/QueryBuilderPHP)
 [![Latest Stable Version](https://poser.pugx.org/tomwright/db-query-builder/v/stable)](https://packagist.org/packages/tomwright/db-query-builder)
@@ -21,6 +21,10 @@ This works well in large applications and search functionality.
 
 ## Quick Examples
 
+In all examples below:
+- `$db` is an instance of [ExtendedPDO](https://github.com/TomWright/ExtendedPDO).
+- `$builder` is an instance of `SqlQueryBuilder`. E.g. `$builder = new SqlQueryBuilder();`.
+
 ### SELECT
 
     SELECT uea.email
@@ -32,7 +36,8 @@ This works well in large applications and search functionality.
 
 In order to get the above query, you would do something like this:
 
-    $query = new Query('SELECT')
+    $query = $builder
+        ->select()
         ->setFields(['uea.email'])
         ->setTable('users u')
         ->addJoin(new Join('JOIN', 'user_email_addresses uea', 'uea.user_id = u.user_id'))
@@ -53,7 +58,8 @@ In order to get the above query, you would do something like this:
 
 In order to get the above query, you would do something like this:
 
-    $query = new Query('UPDATE')
+    $query = $builder
+        ->update()
         ->setValues('username', 'Tom')
         ->addRawValue('dt_modified', 'NOW()')
         ->setTable('users')
@@ -74,7 +80,9 @@ In order to get the SQL and bind parameters, you must have already run `buildQue
 
 ## Selecting the Query Type
 
-    $query = new Query('SELECT'); // SELECT query
+Any of the following methods are available to create your Query object.
+
+    $query = $builder->select(); // SELECT query
     $query = new Query('DELETE'); // DELETE query
     $query = new Query()->setType('UPDATE'); // UPDATE query
     
