@@ -162,6 +162,16 @@ class SqlQuery
 
 
     /**
+     * @param array|string[] $types
+     * @return bool
+     */
+    public function isType(array $types)
+    {
+        return in_array($this->getType(), $types);
+    }
+
+
+    /**
      * @return array|\string[]
      */
     public function getFields()
@@ -536,8 +546,7 @@ class SqlQuery
      */
     protected function buildQueryJoins()
     {
-        $validTypes = ['SELECT', 'UPDATE', 'DELETE'];
-        if (! in_array($this->getType(), $validTypes)) {
+        if (! $this->isType(['SELECT', 'UPDATE', 'DELETE'])) {
             return $this;
         }
         $joins = $this->getJoins();
@@ -555,8 +564,7 @@ class SqlQuery
      */
     protected function buildQueryWheres()
     {
-        $validTypes = ['SELECT', 'UPDATE', 'DELETE'];
-        if (! in_array($this->getType(), $validTypes)) {
+        if (! $this->isType(['SELECT', 'UPDATE', 'DELETE'])) {
             return $this;
         }
         $wheres = $this->getWheres();
@@ -657,8 +665,7 @@ class SqlQuery
      */
     protected function buildQueryGroupBys()
     {
-        $validTypes = ['SELECT'];
-        if (! in_array($this->getType(), $validTypes)) {
+        if (! $this->isType(['SELECT'])) {
             return $this;
         }
         $groupBys = $this->getGroupBys();
@@ -680,8 +687,7 @@ class SqlQuery
      */
     protected function buildQueryOrderBys()
     {
-        $validTypes = ['SELECT'];
-        if (! in_array($this->getType(), $validTypes)) {
+        if (! $this->isType(['SELECT'])) {
             return $this;
         }
         $orderBys = $this->getOrderBys();
@@ -703,8 +709,7 @@ class SqlQuery
      */
     protected function buildQueryOffset()
     {
-        $validTypes = ['SELECT', 'UPDATE', 'DELETE'];
-        if (! in_array($this->getType(), $validTypes)) {
+        if (! $this->isType(['SELECT', 'UPDATE', 'DELETE'])) {
             return $this;
         }
         if ($this->offset !== null) {
@@ -719,8 +724,7 @@ class SqlQuery
      */
     protected function buildQueryLimit()
     {
-        $validTypes = ['SELECT', 'UPDATE', 'DELETE'];
-        if (! in_array($this->getType(), $validTypes)) {
+        if (! $this->isType(['SELECT', 'UPDATE', 'DELETE'])) {
             return $this;
         }
         if ($this->offset !== null) {
